@@ -1,0 +1,2 @@
+# geneth
+mimetic learning project
