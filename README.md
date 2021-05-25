@@ -8,7 +8,7 @@ PoW should not be solvable through a genetic algorithm because hash functions di
 
 The PoW difficulty (modifiable in the genesis.json file) now represents the minimum acceptable fitness. The nonce represents the individual. The hash fuction is now a fitness function (more details are present in the form of comments directly in the source code).
 
-##Edited Files
+## Edited Files
 cd ./go-ethereum-master/consensus/ethash
 
 genetic.go -> a simple implementation of  a genetic algorithm
@@ -25,7 +25,7 @@ The other files in the other folders are only needed to setup a blockchain netwo
 cd ./go-ethereum-master
 docker build -t geneth .
 
-#Running 
+# Running 
 (cd .. if in the go-ethereum-master folder)
 
 sudo ./cleanup
