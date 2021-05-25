@@ -26,9 +26,13 @@ The other files in the other folders are only needed to setup a blockchain netwo
 
 ## Setup
 
-cd ./go-ethereum-master
+```shell
+$ cd ./go-ethereum-master
+```
 
-docker build -t geneth .
+```shell
+$ docker build -t geneth .
+```
 
 ## Running 
 
