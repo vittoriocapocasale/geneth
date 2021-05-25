@@ -32,38 +32,51 @@ docker build -t geneth .
 
 # Running 
 
-(cd .. if in the go-ethereum-master folder)
+(cd ./.. if in the go-ethereum-master folder)
 
-sudo ./cleanup
+```shell
+$ sudo ./cleanup
+```
 
-./setup
+```shell
+$ ./setup
+```
 
-<!--This starts 4 geneth nodes-->
+This starts 4 geneth nodes
 
-docker compose up
+```shell
+$ docker compose up
+```
+Wait for the DAG generation (I did not clean the code from the original PoW setup)...
 
-<!--Wait for the DAG generation (I did not clean the code from the original PoW setup)-->
+This deploys a simple smart contract (counter) (from node 0)
 
-<!--This deploys a simple smart contract (from node 0)-->
+```shell
+$ docker compose -f deployer.yml up
+```
 
-docker compose -f deployer.yml up
+This increments the counter once.  (from node 0)
 
-<!--This increments the smart contarct once.  (from node 0)-->
+```shell
+$ docker compose -f tester.yml up
+```
 
-docker compose -f tester.yml up
+This reads the current value of the smart contract (from node 1)
 
-<!-- This reads the current value of the smart contract (from node 1) -->
+```shell
+$ docker compose -f loader.yml up
+```
 
-docker compose -f loader.yml up
+Tearing down
 
-<!--When finished --> 
+```shell
+$ docker compose down
 
-docker compose down
+$ docker compose -f deployer.yml down
 
-docker compose -f deployer.yml down
+$ docker compose -f tester.yml down
 
-docker compose -f tester.yml down
+$ docker compose -f loader.yml down
 
-docker compose -f loader.yml down
-
-sudo ./cleanup
+$ sudo ./cleanup
+```
