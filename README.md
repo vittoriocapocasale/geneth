@@ -30,7 +30,7 @@ cd ./go-ethereum-master
 
 docker build -t geneth .
 
-# Running 
+## Running 
 
 (cd ./.. if in the go-ethereum-master folder)
 
