@@ -1,0 +1,14 @@
+version: '3.8'
+
+
+services:
+  loader:
+    container_name: loader
+    image: node:14
+    working_dir: /usr/src/client
+    command: bash -c "node main.js read"
+    volumes:
+        - ./client:/usr/src/client
+        - ./client/node_modules_cont:/usr/src/client/node_modules   
+
+

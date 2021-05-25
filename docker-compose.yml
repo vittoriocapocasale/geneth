@@ -1,0 +1,179 @@
+version: '3.8'
+services:
+  
+      
+  geneth0:
+    image: geneth
+    container_name: geneth0
+    ports:
+      - '30300:30300'
+      - '8545:8545'
+      - '5555:5555'
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        geth --datadir "/eth/data" init "/genesis.json"
+        geth \
+        --identity "geneth0" \
+        --nodiscover \
+        --allow-insecure-unlock \
+        --unlock "0" \
+        --password "/eth/data/password.txt" \
+        --mine \
+        --miner.threads 1 \
+        --verbosity 3 \
+        --ws \
+        --ws.addr "0.0.0.0" \
+        --ws.port "5555" \
+        --ws.origins "*" \
+        --ws.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" \
+        --http \
+        --http.vhosts=* \
+        --http.addr "0.0.0.0" \
+        --http.port "8545" \
+        --http.corsdomain "*" \
+        --datadir "/eth/data" \
+        --port "30300" \
+        --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" \
+        --networkid 10 \
+        --nat "any" \
+        --metrics \
+        --syncmode "full" \
+        --gpo.percentile 0 \
+        --gpo.maxprice 0
+    volumes:
+      - ./genesis.json:/genesis.json
+      - ./n0/data:/eth/data
+      - ./static-nodes.json:/eth/data/static-nodes.json
+      - ./0/nodekey:/eth/data/nodekey
+
+    
+    
+  geneth1:
+    image: geneth
+    container_name: geneth1
+    ports:
+      - '30301:30300'
+      - '8546:8545'
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        geth --datadir "/eth/data" init "/genesis.json"
+        geth \
+        --identity "geneth1" \
+        --nodiscover \
+        --allow-insecure-unlock \
+        --unlock "0" \
+        --password "/eth/data/password.txt" \
+        --mine \
+        --miner.threads 1 \
+        --verbosity 3 \
+        --ws \
+        --ws.addr "0.0.0.0" \
+        --ws.port "5555" \
+        --ws.origins "*" \
+        --ws.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" \
+        --http \
+        --http.vhosts=* \
+        --http.addr "0.0.0.0" \
+        --http.port "8545" \
+        --http.corsdomain "*" \
+        --datadir "/eth/data" \
+        --port "30300" \
+        --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" \
+        --networkid 10 \
+        --nat "any" \
+        --metrics \
+        --syncmode "full" \
+        --gpo.percentile 0 \
+        --gpo.maxprice 0
+    volumes:
+      - ./genesis.json:/genesis.json
+      - ./n1/data:/eth/data
+      - ./static-nodes.json:/eth/data/static-nodes.json
+      - ./1/nodekey:/eth/data/nodekey 
+
+      
+      
+  geneth2:
+    container_name: geneth2
+    image: geneth
+    ports:
+      - '30302:30300'
+      - '8547:8545'
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        geth --datadir "/eth/data" init "/genesis.json"
+        geth \
+        --identity "geneth2" \
+        --nodiscover \
+        --allow-insecure-unlock \
+        --unlock "0" \
+        --password "/eth/data/password.txt" \
+        --mine \
+        --miner.threads 1 \
+        --verbosity 3 \
+        --http \
+        --http.vhosts=* \
+        --http.addr "0.0.0.0" \
+        --http.port "8545" \
+        --http.corsdomain "*" \
+        --datadir "/eth/data" \
+        --port "30300" \
+        --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" \
+        --networkid 10 \
+        --nat "any" \
+        --metrics \
+        --syncmode "full" \
+        --gpo.percentile 0 \
+        --gpo.maxprice 0
+    volumes:
+      - ./genesis.json:/genesis.json
+      - ./n2/data:/eth/data
+      - ./static-nodes.json:/eth/data/static-nodes.json
+      - ./2/nodekey:/eth/data/nodekey
+
+  geneth3:
+    container_name: geneth3
+    image: geneth
+    ports:
+      - '30303:30300'
+      - '8548:8545'
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        geth --datadir "/eth/data" init "/genesis.json"
+        geth \
+        --identity "geneth3" \
+        --nodiscover \
+        --allow-insecure-unlock \
+        --unlock "0" \
+        --password "/eth/data/password.txt" \
+        --mine \
+        --miner.threads 1 \
+        --verbosity 3 \
+        --http \
+        --http.vhosts=* \
+        --http.addr "0.0.0.0" \
+        --http.port "8545" \
+        --http.corsdomain "*" \
+        --datadir "/eth/data" \
+        --port "30300" \
+        --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" \
+        --networkid 10 \
+        --nat "any" \
+        --metrics \
+        --syncmode "full" \
+        --gpo.percentile 0 \
+        --gpo.maxprice 0
+    volumes:
+      - ./genesis.json:/genesis.json
+      - ./n3/data:/eth/data
+      - ./static-nodes.json:/eth/data/static-nodes.json
+      - ./3/nodekey:/eth/data/nodekey
+
